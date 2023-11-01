@@ -1,5 +1,5 @@
 from django.contrib import admin
-from AgendaApp.models import Agenda
+from AgendaApp.models import Agenda, Cidade
 
 class AgendaAdmin(admin.ModelAdmin):
     list_display = ['id', 'nome', 'apelido', 'email']
@@ -10,3 +10,4 @@ class AgendaAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Agenda, AgendaAdmin)
+admin.site.register(Cidade)
