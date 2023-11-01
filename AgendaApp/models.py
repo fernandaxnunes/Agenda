@@ -9,6 +9,12 @@ class Agenda(models.Model):
         ('D', 'Divorciado'), 
         ('V', 'Viúvo')
         ]
+    UFS = [
+        ('SP', 'São Paulo'),
+        ('RJ', 'Rio de Janeiro'),
+        ('MG', 'Minas Gerais'),
+        ('ES', 'Espírito Santo')
+    ]
     nome = models.CharField(max_length=200)
     apelido = models.CharField(max_length=30)
     email = models.EmailField(max_length=100)
@@ -19,7 +25,7 @@ class Agenda(models.Model):
     cep = models.CharField(max_length=9)
     bairro = models.CharField(max_length=100)
     cidade = models.CharField(max_length=100)
-    estado = models.CharField(max_length=50)
+    estado = models.CharField(max_length=2, choices=UFS, null=True)
     estado_civil = models.CharField(max_length=1, choices=ESTADO_CIVIS, null=True)
 
     def __str__(self):
