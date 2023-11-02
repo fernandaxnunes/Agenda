@@ -39,5 +39,20 @@ class Agenda(models.Model):
 
     def __str__(self):
         return self.nome
+    
+class Telefone(models.Model):
+    TIPOS_TELEFONE = [
+        ('RES', 'Residencial'),
+        ('COM', 'Comercial'),
+        ('REC', 'Recado')
+    ]
+    agenda = models.ForeignKey(Agenda, on_delete=models.CASCADE)
+    ddd = models.IntegerField()
+    numero = models.CharField(max_length=10)
+    tipo = models.CharField(max_length=3, choices=TIPOS_TELEFONE)
+    IsWhatsapp = models.BooleanField(verbose_name='Tem WhatsApp?')
+
+    def __str__(self):
+        return f'({self.ddd}) {self.numero}'
 
 
