@@ -8,6 +8,12 @@ UFS = [
      ('ES', 'Espírito Santo')
 ] 
 
+class Interesse(models.Model):
+    nome = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nome
+
 class Cidade(models.Model):
     nome = models.CharField(max_length=50)
     uf = models.CharField(max_length=2, choices=UFS)
@@ -36,6 +42,7 @@ class Agenda(models.Model):
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     estado = models.CharField(max_length=2, choices=UFS, null=True)
     estado_civil = models.CharField(max_length=1, choices=ESTADO_CIVIS, null=True)
+    interesses = models.ManyToManyField(Interesse)
 
     def __str__(self):
         return self.nome
@@ -54,5 +61,7 @@ class Telefone(models.Model):
 
     def __str__(self):
         return f'({self.ddd}) {self.numero}'
+    
+
 
 
